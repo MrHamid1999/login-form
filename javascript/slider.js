@@ -126,20 +126,24 @@ signUpForm.addEventListener("submit" , e => {
 signInForm.addEventListener("submit" , e => {
     const logInUser = signInForm.username;
     const logInPass = signInForm.password;
+    // perevent empty fields 
     if (!logInUser.value || !logInPass.value) {
         e.preventDefault()
         alert("complete the items")
     }
+    // getting the index of user in local storage
     let indexUser;
     Array.from(users).forEach((user , index) => {
         if (logInUser.value.match(user.userName)) {
             indexUser = index ;
         }
     })
+    // comparing username and password with available data
      users = Array.from(users)
     if (indexUser == undefined) {
         e.preventDefault
     } else if(logInPass.value !=users[indexUser].password ){
-        
+        e.preventDefault()
+        alert("password is not correct");
     }
 })
